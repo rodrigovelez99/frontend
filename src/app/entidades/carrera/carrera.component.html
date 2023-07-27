@@ -1,0 +1,41 @@
+<h1>Operaciones CRUD - Carrera</h1>
+
+<!-- Formulario para agregar o editar carreras -->
+<form [formGroup]="carreraForm" (ngSubmit)="submitCarrera()">
+  <input type="hidden" formControlName="_id">
+  <label for="nombre">Nombre de la carrera :</label>
+  <input type="text" id="nombre" formControlName="nombre" required>
+  <label for="cantidad_km">Cantidad de kilometros :</label>
+  <input type="text" id="cantidad_km" formControlName="cantidad_km" required>
+  <label for="detalles">Detalles de la carrera :</label>
+  <input type="text" id="detalles" formControlName="detalles" required>
+  <label for="hora">Hora :</label>
+  <input type="text" id="hora" formControlName="hora" required>
+  <button type="submit">{{ carreraForm.get('_id')?.value ? 'Actualizar' : 'Agregar' }}</button>
+</form>
+
+<!-- Tabla para mostrar la lista de las carreras -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre de la Carrera</th>
+      <th>Cantidad de kilometros</th>
+      <th>Detalles</th>
+      <th>Hora</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let carrera of objeto">
+      <td>{{ carrera._id }}</td>
+      <td>{{ carrera.nombre_carrera }}</td>
+      <td>{{ carrera.cantidad_km}}</td>
+      <td>{{ carrera.detalles }}</td>
+      <td>{{ carrera.hora }}</td>
+      <td>
+        <button (click)="editarCarrera(carrera)">Editar</button>
+        <button (click)="eliminarCarrera(carrera._id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

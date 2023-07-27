@@ -1,0 +1,39 @@
+
+<h1>Operaciones CRUD - Corredor</h1>
+
+<!-- Formulario para agregar o editar cliente -->
+<form [formGroup]="corredorForm" (ngSubmit)="submitCorredor()">
+  <input type="hidden" formControlName="_id">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombreCorredor" formControlName="nombreCorredor" required>
+  <input type="text" id="peso" formControlName="peso" required>
+  <input type="text" id="altura" formControlName="altura" required>
+  <input type="text" id="edad" formControlName="edad" required>
+  <button type="submit">{{ corredorForm.get('_id')?.value ? 'Actualizar' : 'Agregar' }}</button>
+</form>
+
+<!-- Tabla para mostrar la lista de corredores -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Peso</th>
+      <th>Altura</th>
+      <th>Edad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let corredor of objeto">
+      <td>{{ corredor._id }}</td>
+      <td>{{ corredor.nombreCorredor }}</td>
+      <td>{{ corredor.peso }}</td>
+      <td>{{ corredor.altura }}</td>
+      <td>{{ corredor.edad }}</td>
+      <td>
+        <button (click)="editarCorredor(corredor)">Editar</button>
+        <button (click)="eliminarcorredor(corredor._id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

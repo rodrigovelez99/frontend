@@ -1,0 +1,47 @@
+<h1>Operaciones CRUD - Seguimiento</h1>
+
+<!-- Formulario para agregar  -->
+<form [formGroup]="seguimientoForm" (ngSubmit)="submitSeguimiento()">
+  <input type="hidden" formControlName="_id">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="tiempo_llegada" formControlName="tiempo_llegada" required>
+  <input type="text" id="orden_llegada" formControlName="orden_llegada" required>
+  <input type="text" id="pulso_inicial" formControlName="pulso_inicial" required>
+  <input type="text" id="pulso_final" formControlName="pulso_final" required>
+  <button type="submit">{{ seguimientoForm.get('_id')?.value ? 'Actualizar' : 'Agregar' }}</button>
+
+  <button type="button" (click)="eliminarSeleccionados()">Eliminar Transacciones Seleccionadas</button>
+</form>
+
+<!-- Tabla para mostrar la lista de seguimiento -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>tiempo_llegada</th>
+      <th>orden_llegada</th>
+      <th>pulso_inicial</th>
+      <th>pulso_final</th>
+      <th>seguimiento</th>
+      <th>carrera</th>
+      <th>corredor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let seguimiento of objeto">
+      <td> <input type="checkbox" [checked]="estaSeleccionado(seguimiento._id)" (change)="seleccionarDesSeleccionarSeguimiento($event, seguimiento._id)"></td>
+      <td>{{ seguimiento._id }}</td>
+      <td>{{ seguimiento.tiempo_llegada }}</td>
+      <td>{{ seguimiento.orden_llegada }}</td>
+      <td>{{ seguimiento.pulso_inical }}$</td>
+      <td>{{ seguimiento.pulso_final }}$</td>
+      <td>{{ seguimiento.carrera }}</td>
+      <td>{{ seguimiento.corredor }}</td>
+      <td>
+        <button (click)="editarSeguimiento(seguimiento)">Editar</button>
+        <button (click)="eliminarSeguimiento(seguimiento._id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
