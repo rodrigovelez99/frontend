@@ -65,7 +65,7 @@ export class SeguimientoComponent implements OnInit {
   estaSeleccionado(seguimientoId: string): boolean {
     return this.seguimientosSeleccionados.includes(seguimientoId);
   }
-  //metodo eliminar al hacer click en el boton
+  
   getSeguimientos(): void {
     this.http.get<Seguimiento>('http://localhost:3000/v1/control/api/seguimientos').subscribe(
       (data) => {
@@ -79,7 +79,7 @@ export class SeguimientoComponent implements OnInit {
       }
     );
   }
-
+//metodo eliminar al dar click en el boton
   eliminarSeleccionados() {
  
     if (this.seguimientosSeleccionados.length < 2 || this.seguimientosSeleccionados.length > 10) {
